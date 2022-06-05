@@ -1,5 +1,8 @@
+http://example.com/wiki/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/
 http://example.com/tags/index.html
 http://example.com/categories/index.html
 http://example.com/about/index.html
 http://example.com/wiki/hello-world/
 http://example.com/
+http://example.com/tags/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/
+http://example.com/categories/%E6%96%87%E6%A1%A3/
