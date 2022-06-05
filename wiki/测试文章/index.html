@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang=zh>
 <head>
     <meta charset="utf-8">
     
@@ -15,10 +15,10 @@
 <meta property="og:url" content="http://example.com/wiki/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Kitty-Wiki">
 <meta property="og:description" content="dispatch_once 为什么可以保证只执行一次？地址：https:&#x2F;&#x2F;shevakuilin.com&#x2F;interview-dispatch_once 创建时间：2020-05-08 简介想尝试写一个面试回答的系列，这是第一篇。 正文GCD 中的 dispatch_once 在面试中是一个比较高频的出现的考察点，这篇文章以面试的角度来回答，为什么 dispatch_once 可以保证只执行一次">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-05T12:38:52.000Z">
 <meta property="article:modified_time" content="2022-06-05T12:40:55.244Z">
-<meta property="article:author" content="光合新知(北京)App组">
+<meta property="article:author" content="光合新知 (北京) App组">
 <meta property="article:tag" content="测试文章">
 <meta name="twitter:card" content="summary">
     
@@ -97,14 +97,14 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -116,11 +116,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -152,7 +152,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
     </div>
 
                 </td>
@@ -169,7 +169,7 @@
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>分类</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -318,7 +318,7 @@
         
             
                 <div id="toc" class="toc-article">
-                <strong class="toc-title">Catalogue</strong>
+                <strong class="toc-title">文章目录</strong>
                     <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#dispatch-once-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E4%BF%9D%E8%AF%81%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">dispatch_once 为什么可以保证只执行一次？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">1.2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E4%BF%9D%E8%AF%81%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1"><span class="toc-number">1.3.</span> <span class="toc-text">为什么可以保证只执行一次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dispatch-once-f-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">dispatch_once_f 实现原理是什么样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dispatch-once-%E4%B8%AD%E7%9A%84%E5%8E%9F%E5%AD%90%E6%80%A7%E6%93%8D%E4%BD%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">dispatch_once 中的原子性操作是怎样的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vval-%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88%EF%BC%9F-DISPATCH-ONCE-DONE-%E5%8F%88%E8%A1%A8%E7%A4%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">vval 代表什么？ DISPATCH_ONCE_DONE 又表示什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C-synchronized-%E7%9A%84%E4%BC%98%E5%8A%A3%E5%88%86%E6%9E%90%EF%BC%9F"><span class="toc-number">1.7.</span> <span class="toc-text">和 @synchronized 的优劣分析？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.8.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
                 </div>
             
@@ -372,7 +372,7 @@
     
     
         <a href="/wiki/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Older</strong>
+            <strong class="article-nav-caption">下一篇</strong>
             <div class="article-nav-title">Hello World</div>
         </a>
     
@@ -397,7 +397,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            光合新知(北京)App组 &copy; 2022 
+            光合新知 (北京) App组 &copy; 2022 
             <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
             <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
             
