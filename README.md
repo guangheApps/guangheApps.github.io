@@ -17,6 +17,8 @@
 
 ### 将站点仓库拉到本地
 
+> 注意：本仓库是部署仓库，不是站点仓库，站点仓库里的才是网站原始配置
+
 `git clone git@github.com:guangheApps/website.git`
 
 ### 初始化hexo服务
